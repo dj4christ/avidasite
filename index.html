@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnonomousCrush</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      border: none;
+      padding: 0.8rem;
+      width: 100%;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease-in-out;
+    }
+    button:hover {
+      transform: scale(1.02);
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>💌 AnonomousCrush</h1>
+    <form id="crushForm">
+      <input type="text" name="name" placeholder="Your First Name" required />
+      <input type="text" name="crush" placeholder="Your Crush's First Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <button type="submit">Submit</button>
+    </form>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    document.getElementById("crushForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const messageEl = document.getElementById("message");
+
+      try {
+        const response = await fetch("https://anonomouscrush.onrender.com/submit", { method: "POST", body: formData });
+        
+
+        if (!response.ok) {
+          let errMsg = "Unknown error";
+          try {
+            const err = await response.json();
+            errMsg = err.error || errMsg;
+          } catch {}
+          throw new Error(errMsg);
+        }
+
+        const result = await response.json();
+        messageEl.style.color = result.match ? "green" : "black";
+        messageEl.textContent = result.match
+          ? "🎉 You have a match! Check your email."
+          : "✅ Submission saved!";
+        form.reset();
+      } catch (error) {
+        messageEl.style.color = "red";
+        messageEl.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
