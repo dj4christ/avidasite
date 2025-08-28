@@ -7,14 +7,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      background: linear-gradient(to right, #000000, #662906);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
-    .form-container {
+    /* .form-container {
       background: white;
       padding: 2rem;
       border-radius: 12px;
@@ -22,7 +22,7 @@
       max-width: 400px;
       width: 100%;
       text-align: center;
-    }
+    } */
     h1 {
       margin-bottom: 1rem;
       font-size: 1.5rem;
@@ -57,7 +57,7 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <!-- <div class="form-container">
     <h1>💌 AnonomousCrush</h1>
     <form id="crushForm">
       <input type="text" name="name" placeholder="Your First Name" required />
@@ -66,39 +66,41 @@
       <button type="submit">Submit</button>
     </form>
     <div class="message" id="message"></div>
-  </div>
+  </div> -->
+
+  <img >
 
   <script>
-    document.getElementById("crushForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      const messageEl = document.getElementById("message");
+    // document.getElementById("crushForm").addEventListener("submit", async function(e) {
+    //   e.preventDefault();
+    //   const form = e.target;
+    //   const formData = new FormData(form);
+    //   const messageEl = document.getElementById("message");
 
-      try {
-        const response = await fetch("https://anonomouscrush.onrender.com/submit", { method: "POST", body: formData });
+    //   try {
+    //     const response = await fetch("https://anonomouscrush.onrender.com/submit", { method: "POST", body: formData });
         
 
-        if (!response.ok) {
-          let errMsg = "Unknown error";
-          try {
-            const err = await response.json();
-            errMsg = err.error || errMsg;
-          } catch {}
-          throw new Error(errMsg);
-        }
+    //     if (!response.ok) {
+    //       let errMsg = "Unknown error";
+    //       try {
+    //         const err = await response.json();
+    //         errMsg = err.error || errMsg;
+    //       } catch {}
+    //       throw new Error(errMsg);
+    //     }
 
-        const result = await response.json();
-        messageEl.style.color = result.match ? "green" : "black";
-        messageEl.textContent = result.match
-          ? "🎉 You have a match! Check your email."
-          : "✅ Submission saved!";
-        form.reset();
-      } catch (error) {
-        messageEl.style.color = "red";
-        messageEl.textContent = `Error: ${error.message}`;
-      }
-    });
+    //     const result = await response.json();
+    //     messageEl.style.color = result.match ? "green" : "black";
+    //     messageEl.textContent = result.match
+    //       ? "🎉 You have a match! Check your email."
+    //       : "✅ Submission saved!";
+    //     form.reset();
+    //   } catch (error) {
+    //     messageEl.style.color = "red";
+    //     messageEl.textContent = `Error: ${error.message}`;
+    //   }
+    // });
   </script>
 </body>
 </html>
