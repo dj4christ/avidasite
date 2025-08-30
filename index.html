@@ -19,9 +19,18 @@
   </div> -->
 
   <img class="logo" src="assets/graphics/logo.png" alt="Avida logo">
-  <button id="playpause" ><img src="assets/graphics/playIcon.png"></button>
+  <button onclick="buttonClicked()" id="playpause" ><img id="buttonImage" src="assets/graphics/playIcon.png"></button>
 
   <script>
+    function buttonClicked() {
+      console.log(document.getElementById("buttonImage").getAttribute("src").split("/").slice(-1)[0])
+      if (document.getElementById("buttonImage").getAttribute("src").split("/").slice(-1)[0] == "playIcon.png") {
+        document.getElementById("buttonImage").setAttribute("src", "assets/graphics/pauseIcon.png");
+      } else {
+        document.getElementById("buttonImage").setAttribute("src", "assets/graphics/playIcon.png");
+      }
+    }
+
     // document.getElementById("crushForm").addEventListener("submit", async function(e) {
     //   e.preventDefault();
     //   const form = e.target;
@@ -30,7 +39,7 @@
 
     //   try {
     //     const response = await fetch("https://anonomouscrush.onrender.com/submit", { method: "POST", body: formData });
-    
+
     //     if (!response.ok) {
     //       let errMsg = "Unknown error";
     //       try {
