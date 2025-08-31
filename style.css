@@ -7,28 +7,31 @@ body {
     height: 100vh;
     margin: 0;
 }
-.form-container {
-    background: white;
+.controllsContainer {
+    background: rgb(136, 135, 135);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     max-width: 400px;
     width: 100%;
-    text-align: center;
+    max-height: 100px;
+    height: 100%;
+    position: fixed;
+    bottom: 15px;
 }
 h1 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     color: #333;
 }
-input {
+/* input {
     width: 100%;
     padding: 0.8rem;
     margin: 0.5rem 0;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-}
+} */
 #playpause {
     /* background: linear-gradient(to right, rgb(206, 135, 60), rgb(198, 123, 42)); */
     background: none;
@@ -75,19 +78,67 @@ input {
 #backButton:hover {
     transform: scale(1.02);
 }
-#tracker {
+#error-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+.error-box {
+    background: #868686;
+    color: rgb(49, 22, 1);
+    padding: 12px 20px;
+    margin-top: 10px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(255, 0, 0, 0.121);
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+/* #tracker {
     -webkit-appearance: none;
-    width: 400px;
-    height: 6px;
-    background: #333;
+    appearance: none;
+    width: 370px;
+    height: 2px;
+    background: #4e4e4e;
     padding: 0.8rem;
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.1s ease-in-out;
     position: fixed;
-    right: 42%;
+    left: 37%;
     top: 640px;
+} */
+
+input[type="range"] {
+    -webkit-appearance: none; /* remove default styling */
+    width: 400px;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    outline: none;
+    position: fixed;
+    left: 36%;
+    top: 640px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d37211;
+    cursor: pointer;
+    margin-top: -2px;
 }
 
 .message {

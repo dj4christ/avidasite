@@ -18,11 +18,13 @@
     <div class="message" id="message"></div>
   </div> -->
 
-  <div class="form-container">
+  <div id="error-container"></div>
+
+  <div class="controllsContainer">
     <button onclick="buttonClicked()" id="playpause" ><img id="buttonImage" src="assets/graphics/playIcon.png"></button>
     <button id="backButton"><img src="assets/graphics/back.png"></button>
     <button id="forwardButton"><img src="assets/graphics/forward.png"></button>
-    <input id="tracker" type="range" min="0" max="100" value="0">
+    <input onclick="" id="tracker" type="range" min="0" max="100" value="0">
 
     <audio hidden controls id="audioPlayer"></audio>
   </div>
@@ -34,15 +36,42 @@
   <script>
     const playImage = document.getElementById("buttonImage");
     const audioPlayer = document.getElementById("audioPlayer");
+
+    function showError(message) {
+      const errorContainer = document.getElementById("error-container");
+      if (!document.getElementById("box")) {
+        const box = document.createElement("div");
+        box.id = "box"
+        box.className = "error-box";
+        box.innerText = message;
+
+        errorContainer.appendChild(box);
+
+        setTimeout(() => {
+          box.remove();
+        }, 4000);
+      }
+      
+    }
+
     function buttonClicked() {
       if (playImage.getAttribute("src").split("/").slice(-1)[0] == "playIcon.png") {
-        playImage.setAttribute("src", "assets/graphics/pauseIcon.png");
-
+        if (audioPlayer.getAttribute("src") == "" || audioPlayer.getAttribute("src") == null) {
+           showError("No track selected")
+        } else {
+          playImage.setAttribute("src", "assets/graphics/pauseIcon.png");
+          audioPlayer.play();
+        }
 
       } else {
         playImage.setAttribute("src", "assets/graphics/playIcon.png");
+        audioPlayer.pause();
 
       }
+    }
+
+    function tracker_changed() {
+      
     }
 
     // document.getElementById("crushForm").addEventListener("submit", async function(e) {
