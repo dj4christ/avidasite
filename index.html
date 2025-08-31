@@ -18,16 +18,30 @@
     <div class="message" id="message"></div>
   </div> -->
 
+  <div class="form-container">
+    <button onclick="buttonClicked()" id="playpause" ><img id="buttonImage" src="assets/graphics/playIcon.png"></button>
+    <button id="backButton"><img src="assets/graphics/back.png"></button>
+    <button id="forwardButton"><img src="assets/graphics/forward.png"></button>
+    <input id="tracker" type="range" min="0" max="100" value="0">
+
+    <audio hidden controls id="audioPlayer"></audio>
+  </div>
+
+
   <img class="logo" src="assets/graphics/logo.png" alt="Avida logo">
-  <button onclick="buttonClicked()" id="playpause" ><img id="buttonImage" src="assets/graphics/playIcon.png"></button>
+  
 
   <script>
+    const playImage = document.getElementById("buttonImage");
+    const audioPlayer = document.getElementById("audioPlayer");
     function buttonClicked() {
-      console.log(document.getElementById("buttonImage").getAttribute("src").split("/").slice(-1)[0])
-      if (document.getElementById("buttonImage").getAttribute("src").split("/").slice(-1)[0] == "playIcon.png") {
-        document.getElementById("buttonImage").setAttribute("src", "assets/graphics/pauseIcon.png");
+      if (playImage.getAttribute("src").split("/").slice(-1)[0] == "playIcon.png") {
+        playImage.setAttribute("src", "assets/graphics/pauseIcon.png");
+
+
       } else {
-        document.getElementById("buttonImage").setAttribute("src", "assets/graphics/playIcon.png");
+        playImage.setAttribute("src", "assets/graphics/playIcon.png");
+
       }
     }
 

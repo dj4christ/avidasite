@@ -7,7 +7,7 @@ body {
     height: 100vh;
     margin: 0;
 }
-/* .form-container {
+.form-container {
     background: white;
     padding: 2rem;
     border-radius: 12px;
@@ -15,7 +15,7 @@ body {
     max-width: 400px;
     width: 100%;
     text-align: center;
-} */
+}
 h1 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -39,12 +39,57 @@ input {
     cursor: pointer;
     transition: transform 0.1s ease-in-out;
     position: fixed;
-    left: 45%;
+    left: 46%;
     top: 520px;
 }
 #playpause:hover {
     transform: scale(1.02);
 }
+#backButton {
+    background: none;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    position: fixed;
+    left: 38%;
+    top: 540px;
+}
+#forwardButton {
+    background: none;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    position: fixed;
+    right: 38%;
+    top: 540px;
+}
+#forwardButton:hover {
+    transform: scale(1.02);
+}
+#backButton:hover {
+    transform: scale(1.02);
+}
+#tracker {
+    -webkit-appearance: none;
+    width: 400px;
+    height: 6px;
+    background: #333;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    position: fixed;
+    right: 42%;
+    top: 640px;
+}
+
 .message {
     margin-top: 1rem;
     font-size: 0.9rem;
