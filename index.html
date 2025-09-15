@@ -20,9 +20,9 @@
 
   <div id="error-container"></div>
   
-  <input id="songSearch" type="search">
 
   <div class="browseContainer">
+    <input onload="" onclick="clearSearch" id="songSearch" type="search">
   </div>
 
   <div class="controllsContainer">
@@ -41,7 +41,11 @@
   <script>
     const playImage = document.getElementById("buttonImage");
     const audioPlayer = document.getElementById("audioPlayer");
+    const searchBar = document.getElementById("songSearch")
 
+    function clearSearch() {
+      searchBar.textContent = ""
+    }
     function showError(message) {
       const errorContainer = document.getElementById("error-container");
       if (!document.getElementById("box")) {

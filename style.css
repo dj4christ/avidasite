@@ -119,23 +119,34 @@ h1 {
 } */
 
 .browseContainer {
-    height: 400px;
+    text-align: center;
+    height: 480px;
     width: 1000px;
     background: rgb(8, 8, 8);
     border-radius: 12px;
     box-shadow: 0 10px 20px black;
     position: fixed;
-    top: 80px;
+    top: 20px;
+    outline: 2px solid rgba(255, 255, 255, 0.155);
 }
 
 #songSearch {
     -webkit-appearance: none;
-    position: fixed;
-    background: rgb(81, 51, 8);
+    color: white;
+    font-size: 15px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    position: relative;
+    background: rgb(61, 61, 61);
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.258);
+    border-color: rgba(40, 40, 40, 0.258);
+    box-shadow: 0 0 10px rgb(46, 46, 46);
     top: 20px;
-    width: 500px;
+    width: 520px;
+    height: 32px;
+    border-radius: 10px;
+    user-select: text;
+    outline: none;
 }
 
 input[type="range"] {
