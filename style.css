@@ -135,7 +135,8 @@ h1 {
     color: white;
     font-size: 15px;
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    text-align: center;
+    text-align: left;
+    padding-left: 15px;
     position: relative;
     background: rgb(61, 61, 61);
     border-style: solid;
@@ -148,9 +149,12 @@ h1 {
     user-select: text;
     outline: none;
 }
+#songSearch::-webkit-search-cancel-button {
+    cursor: pointer; /* changes cursor when hovering over the 'x' */
+}
 
 input[type="range"] {
-    -webkit-appearance: none; /* remove default styling */
+    -webkit-appearance: none;
     width: 400px;
     height: 6px;
     background: #333;
@@ -171,6 +175,7 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     margin-top: -2px;
 }
+
 
 .message {
     margin-top: 1rem;

@@ -22,7 +22,7 @@
   
 
   <div class="browseContainer">
-    <input onload="" onclick="clearSearch" id="songSearch" type="search">
+    <input id="songSearch" placeholder="Search for songs..." type="search">
   </div>
 
   <div class="controllsContainer">
@@ -31,7 +31,7 @@
     <button id="forwardButton"><img src="assets/graphics/forward.png"></button>
     <input onclick="" id="tracker" type="range" min="0" max="100" value="0">
 
-    <audio hidden controls id="audioPlayer"></audio>
+    <audio hidden controls id="audioPlayer" src=""></audio>
   </div>
 
 
@@ -41,7 +41,16 @@
   <script>
     const playImage = document.getElementById("buttonImage");
     const audioPlayer = document.getElementById("audioPlayer");
-    const searchBar = document.getElementById("songSearch")
+    const searchBar = document.getElementById("songSearch");
+    const slider = document.querySelector('input[type="range"]');
+
+    function updateTrack() {
+      const val = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+      slider.style.background = `linear-gradient(to right, #d37211 ${val}%, #333 ${val}%)`;
+    }
+
+    slider.addEventListener('input', updateTrack);
+    updateTrack();
 
     function clearSearch() {
       searchBar.textContent = ""
@@ -80,7 +89,7 @@
     }
 
     function tracker_changed() {
-      
+      audioPlayer.currentTime = 40;
     }
 
     // document.getElementById("crushForm").addEventListener("submit", async function(e) {
