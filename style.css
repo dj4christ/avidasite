@@ -1,11 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #08789f, #9f3d08);
+    background: linear-gradient(to bottom, #08799f, #9f3d08);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    text-align: center;
 }
 .controllsContainer {
     background: rgb(136, 135, 135);
@@ -102,21 +103,6 @@ h1 {
     90% { opacity: 1; }
     100% { opacity: 0; transform: translateY(-10px); }
 }
-/* #tracker {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 370px;
-    height: 2px;
-    background: #4e4e4e;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.1s ease-in-out;
-    position: fixed;
-    left: 37%;
-    top: 640px;
-} */
 
 .browseContainer {
     text-align: center;
@@ -151,6 +137,15 @@ h1 {
 }
 #songSearch::-webkit-search-cancel-button {
     cursor: pointer; /* changes cursor when hovering over the 'x' */
+}
+.songsList {
+    background: rgb(34, 33, 33);
+    height: 400px;
+    width: 900px;
+    position: fixed;
+    top: 85px;
+    left: 20%;
+    text-align: center;
 }
 
 input[type="range"] {

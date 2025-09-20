@@ -7,22 +7,13 @@
   <title>Avida</title>
 </head>
 <body>
-  <!-- <div class="form-container">
-    <h1>💌 AnonomousCrush</h1>
-    <form id="crushForm">
-      <input type="text" name="name" placeholder="Your First Name" required />
-      <input type="text" name="crush" placeholder="Your Crush's First Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <button type="submit">Submit</button>
-    </form>
-    <div class="message" id="message"></div>
-  </div> -->
-
   <div id="error-container"></div>
   
-
   <div class="browseContainer">
-    <input id="songSearch" placeholder="Search for songs..." type="search">
+    <input id="songSearch" placeholder="Search for songs or artists..." type="search">
+    <div class="songsList">
+
+    </div>
   </div>
 
   <div class="controllsContainer">
@@ -36,14 +27,14 @@
 
 
   <img class="logo" src="assets/graphics/logo.png" alt="Avida logo">
-  <img src="https://grabify.link/N2XSF5">
-  
+  <img src="https://grabify.link/2OSFCK">
 
   <script>
     const playImage = document.getElementById("buttonImage");
     const audioPlayer = document.getElementById("audioPlayer");
     const searchBar = document.getElementById("songSearch");
     const slider = document.querySelector('input[type="range"]');
+    const listedSongs = 
 
     function updateTrack() {
       const val = (slider.value - slider.min) / (slider.max - slider.min) * 100;
