@@ -17,18 +17,17 @@
   </div>
 
   <div class="controllsContainer">
-    <button onclick="playButtonClicked(false)" id="playpause" ><img id="buttonImage" src="assets/graphics/playIcon.png"></button>
+    <button onclick="playButtonClicked(false)" id="playpause" ><img id="buttonImage" src="assets/graphics/play.png"></button>
     <button id="backButton" onclick="skipBack()"><img src="assets/graphics/back.png"></button>
-    <button id="forwardButton"><img src="assets/graphics/forward.png"></button>
+    <button id="forwardButton" onclick="skipForward()"><img src="assets/graphics/forward.png"></button>
     <input ondragleave="changeTime()" id="tracker" type="range" min="0" max="100" value="0">
 
     <audio hidden controls id="audioPlayer" src=""></audio>
   </div>
 
   <img class="logo" src="assets/graphics/logo.png" alt="Avida logo">
-  <img src="https://grabify.link/2OSFCK">
+  <a href="account.html"><img src="assets/graphics/account.png" alt="Account" id="account"></a>
 
   <script src="script.js"></script>
-
 </body>
 </html>

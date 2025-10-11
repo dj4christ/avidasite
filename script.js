@@ -5,7 +5,10 @@ const slider = document.querySelector('input[type="range"]');
 const tracker = document.getElementById("tracker");
 const songDiv = document.getElementById("songsList");
 const loadingMessage = document.getElementById("loadingMessage");
+var currentSong = "";
+let queue = [];
 let topTenSongs = [];
+// tracker.value = 0;
 
 audioPlayer.addEventListener("timeupdate", () => {
     tracker.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -19,15 +22,32 @@ function changeTime() {
 }
 
 function skipBack() {
-    if (audioPlayer.currentTime >= 2) {
-        audioPlayer.currentTime = 0;
-    }
+  const currentIndex = queue.findIndex(song => song.filename === currentSong);
+
+  if (audioPlayer.currentTime >= 2) {
+    audioPlayer.currentTime = 0;
+  } else if (currentIndex > 0) {
+    const prevSong = queue[currentIndex - 1];
+    playSong(prevSong.filename);
+  } else {
+    showError("No previous song in queue");
+  }
+}
+function skipForward() {
+  const currentIndex = queue.findIndex(song => song.filename === currentSong);
+
+  if (currentIndex >= 0 && currentIndex < queue.length - 1) {
+    const nextSong = queue[currentIndex + 1];
+    playSong(nextSong.filename);
+  } else {
+    showError("No next song in queue");
+  }
 }
 
 function listSongs(songLists) {
     const songsList = document.querySelector(".songsList");
     songsList.innerHTML = "";
-    loadingMessage.innerText = ""
+    loadingMessage.innerText = "";
     songLists.forEach((song, index) => {
         const button = document.createElement("button");
         var songname = song.filename.split("-")[1].replace(".mp3", "");
@@ -78,6 +98,7 @@ searchBar.addEventListener("input", () => {
         songsList.innerHTML = "";
         fetch("https://avida.onrender.com/songs").then(response => response.json()).then(data => {
             topTenSongs = data.slice(0, 10);
+            queue = topTenSongs;
 
             listSongs(topTenSongs);
         });
@@ -86,15 +107,15 @@ searchBar.addEventListener("input", () => {
 
 
 function playButtonClicked(run) {
-    if (playImage.getAttribute("src").split("/").slice(-1)[0] == "playIcon.png") {
+    if (playImage.getAttribute("src").split("/").slice(-1)[0] == "play.png") {
     if (audioPlayer.getAttribute("src") == "" || audioPlayer.getAttribute("src") == null) {
         showError("No track selected")
     } else {
         if (!run) {
-            playImage.setAttribute("src", "assets/graphics/pauseIcon.png");
+            playImage.setAttribute("src", "assets/graphics/pause.png");
             audioPlayer.play();
         } else {
-            playImage.setAttribute("src", "assets/graphics/pauseIcon.png");
+            playImage.setAttribute("src", "assets/graphics/pause.png");
             audioPlayer.play();
         }
         
@@ -102,7 +123,7 @@ function playButtonClicked(run) {
 
     } else {
     if (!run) {
-        playImage.setAttribute("src", "assets/graphics/playIcon.png");
+        playImage.setAttribute("src", "assets/graphics/play.png");
         audioPlayer.pause();
         } else {
         audioPlayer.play();
@@ -111,15 +132,15 @@ function playButtonClicked(run) {
 }
 
 function playSong(songName) {
-    const button = document.getElementById(songName);
-    button.background = "#d60b37";
     audioPlayer.src =  `https://avida.onrender.com/music/${songName}`;
     audioPlayer.currentTime = 0;
+    currentSong = songName;
     playButtonClicked(true);
 }
 
 fetch("https://avida.onrender.com/songs").then(response => response.json()).then(data => {
     topTenSongs = data.slice(0, 10);
+    queue = topTenSongs;
 
     listSongs(topTenSongs);
 });
